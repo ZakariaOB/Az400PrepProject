@@ -79,3 +79,5 @@
 
 - If you use app configuration service you can act on data live . You change the value
   on the app configuration and you will be able to see the impact .
+
+

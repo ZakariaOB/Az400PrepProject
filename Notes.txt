@@ -2,7 +2,7 @@ TO DO
 
 - Check the state of preparation
 - Reorganise documentation
-- Git ??
+- OK Git ??
 - Advance on questions and reschedule labs .
 
 ______________________________________________________
