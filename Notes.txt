@@ -1,0 +1,131 @@
+TO DO 
+
+- Check the state of preparation
+- Reorganise documentation
+- Git ??
+- Advance on questions and reschedule labs .
+
+______________________________________________________
+
+- Lecture 91 : So what exactly is happening
+
+- In unbuntu-latest does not seem to have .NET 6 on that machine
+
+- VSbuild is specifically used to run in windows . So if we change the image of the agent
+  we should use a different Task without using VSbuild .
+
+- Self hosted agents 
+  - Sometimes we need to prepare dedicated machines to make sure that our builds are 
+    done.
+ - Machine created : useradmin, useradmin@2023
+ - How
+    - Create a Windows server machine
+    - Install Git on it
+    - Install .NET SDK
+    - We can create an acces token at azure devops project
+      - Open devops in the machine
+      - Custom acces token: zsf67hewtnxn7hk74lnlhvzqe2nlv4wnkpyjd7f66wlylnkyrieq
+      - Orgnisation settings > Agent pools
+      - Running the Job will take more time
+    - The idea behind self hosted agents is that we can reuse the build and it will not 
+      be lost after deleting the machine used by azure devops .
+
+- Mend(WhiteSource)
+ - Check for any sort of security vulnerability or licensing issues .
+
+- You can create a Mend account by usig the default AzureDevops organisation
+ - One example of usage is installing newtonsoftjson and check if WhiteSource will detect that
+
+- So, in practical terms, **/BuildApp.Test would match any file or directory named "BuildApp.Test" 
+within the current directory and all of its subdirectories.
+
+- Code coverage
+ - Install coverlit at testing solution level
+ - Update the pipeline with adding : Restore dependencies, run tests 
+ and publish coverage results
+
+
+- Sonar cloud token
+ - Access key: 111b5261b2088928bfd7fc98bf04530abfaca72e
+ - We need to create a sonar cloud project first
+ - We have to add sonar cloud connection at devops level
+ - We add the needed tasks to run sonar cloud analysis and publish them
+
+
+- Pipeline caching is possible in order to speed up pipeline execution by avoiding redownload of nuget package .
+
+- Jenkis
+  - External continous integration tool
+
+
+- Artificat > What we want to deploy
+   - Exmaple : A build of our application
+
+- Agents on release pipeline are necessary because you will always need a machine to excute pipeline commands .
+
+- A publish task can help on copying the artificat from build machine to release machine .
+
+- We have to enable 'Continuous deployment trigger'
+
+- With gates we can add multiple conditions as a post condition before allowing deploying 
+  a version to a specific environnement .
+   - Check if all work item queries are closed
+   - Check if alerts are closed
+
+- Deploy on an azure vm from pipelines
+  - useradmin, useradmin@2023
+  - We need IIS on the machines
+
+- Deployement groups can work on multiple deployments
+
+- You will need to copy a powershell script file
+
+- Server 
+   az400admin
+   az400@200
+
+
+_____________________________________
+
+Infrastructure as Code
+
+- At devops process you will need sometimes to add or remove resources
+- In order to create your resource directly from azure you have to 
+  - Create from template and use the right template .
+  - For ssql server : You will need 2 resources , database and a server .
+
+- Deployment modes 
+  - Incremental : resources will not interfere with resources created 
+   on the resource group .
+  - Complete Mode: In complete mode, the deployment is not selective or incremental. 
+    Instead, it treats the ARM template as the single source of truth for the entire 
+    resource group and ensures that the resource group's configuration matches the template exactly. 
+    This means it can create new resources, update existing ones, and delete any resources not defined in the template.
+
+- You can always deploy templates using : template deployment
+
+- Nested templates 
+  - templates containing other templates
+  - Build your own template: useradmin, uab@200!!seradmin1987@!
+
+- We can use those templates in our releases pipelines
+  - You need to rebuild the release pipeline with appservice and sqlserevr first
+    - App create locally
+    - create the app service
+  - Deploy this using a release pipeline
+    - Go to the repo
+    - Set up a build to create a build pipeline
+    - create a release pipeline
+    - You can add the connection string directly from the release pipeline and create an sql database 
+    - You can add an Azure App Service settings and directly inject a connection object 
+       [
+        {
+          "name": "SQLConnection",
+          "value": "Server=tcp:appdbser4001987.database.windows.net,1433;Initial Catalog=appdb;...."
+        }
+       ]
+    - .NET app will using IConfiguration will directly look for the right configuration and use it .
+
+
+    - Using the arm template to build the needed resources for the deployment
+      - TODO : Resolve issue

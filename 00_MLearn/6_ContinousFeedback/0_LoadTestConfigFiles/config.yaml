@@ -1,0 +1,22 @@
+displayName: Test_Az400_Load
+testPlan: quick_test.jmx
+description: ''
+engineInstances: 1
+testId: 1eb4d436-2f7b-4e11-bda6-72079020201d
+testType: JMX
+splitAllCSVs: False
+failureCriteria: []
+env:
+- name: domain
+  value: az400eshopzakram400.azurewebsites.net
+- name: protocol
+  value: https
+- name: threads_per_engine
+  value: 50
+- name: ramp_up_time
+  value: 60
+- name: duration_in_sec
+  value: 300
+autoStop:
+  errorPercentage: 90
+  timeWindow: 60

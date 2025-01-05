@@ -1,0 +1,3 @@
+{
+    "dotnet.defaultSolution": "2_BuildPipelines/0_BuildApp/BuildApp/BuildApp.sln"
+}
