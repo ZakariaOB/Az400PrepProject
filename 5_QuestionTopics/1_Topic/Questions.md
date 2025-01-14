@@ -147,7 +147,7 @@ You are making use of Azure DevOps to configure Azure Pipelines for project, nam
 You are preparing to use a version control system that allows for source code to be stored on a managed Windows server located on the company network.
 Which of the following is the version control system you should use?
 
-A. Github Enterprise Most Voted
+A. Github Enterprise 
 B. Bitbucket cloud
 C. Github Professional
 D. **Correct**: Git in Azure Repos
@@ -175,7 +175,7 @@ Which of the following is a command you should run?
 
 A. npm edit
 B. npm publish
-C. npm install Most Voted
+C. npm install 
 D. npm update
 
 The npm install command will install the devDependencies along other dependencies when run inside a package directory, in a development environment (the default).
@@ -217,7 +217,7 @@ Select `No adjustment required` if the underlined segment is accurate. If the un
 
 A. No adjustment required.
 B. security
-C. **Correct** deployment Most Voted
+C. **Correct** deployment 
 D. resource
 
 ### **Question 19**
@@ -245,3 +245,130 @@ A. You should make use of static code analysis.
 B. **Correct** You should make use of views.
 C. You should make use of dynamic code analysis.
 D. You should make use of upstream sources.
+
+
+### **Question 21**
+
+You need to consider the underlined segment to establish whether it is accurate.
+To find when common open source libraries are added to the code base, you should add Jenkins to the build pipeline.
+Select `No adjustment required` if the underlined segment is accurate. If the underlined segment is inaccurate, select the accurate option.
+
+A. No adjustment required.
+B. SourceGear Vault
+C. **Correct** WhiteSource 
+D. OWASP ZAP
+
+
+### **Question 22**
+
+Your company has an Azure DevOps project, which includes a build pipeline that makes use of roughly fifty open source libraries.
+You have been tasked with making sure that you are able to scan project for common security weaknesses in the open source libraries.
+Which of the following actions should you take?
+
+A. **Correct** You should create a build task and use the WhiteSource Bolt service.
+B. You should create a deployment task and use the WhiteSource Bolt service.
+C. You should create a build task and use the Chef service.
+D. You should create a deployment task and use the Chef service.
+
+
+### **Question 23**
+
+You need to consider the underlined segment to establish whether it is accurate.
+*Black Duck* can be used to make sure that all the open source libraries conform to your company's licensing criteria.
+Select `No adjustment required` if the underlined segment is accurate. If the underlined segment is inaccurate, select the accurate option.
+
+A. **Correct** No adjustment required. 
+B. Maven
+C. Bamboo
+D. CMAKE
+
+
+### **Question 24**
+
+You have created an Azure DevOps project for a new application that will be deployed to a number of Windows Server 2016 Azure virtual machines.
+You are preparing a deployment solution that allows for the virtual machines to maintain a uniform configuration, and also keep administrative effort with regards to configuring the virtual machines to a minimum.
+Which of the following should be part of your solution? (Choose two.)
+
+A. **Correct** Azure Resource Manager templates
+B. **Correct** The PowerShell Desired State Configuration (DSC) extension for Windows
+C. Azure pipeline deployment groups
+D. The Custom Script Extension for Windows
+E. Azure pipeline stage templates
+
+Considering the requirements
+- maintain a uniform configuration for virtual machines
+- minimize administrative effort
+
+I think correct answer is A & B.
+To mantain the configuration status of a VM you must use DSC.
+To minimize the effort of creating the VM you can use an ARM template so that you can reuse it for each VM. 
+Deployment groups requires more effort.
+
+### **Question 25**
+
+Your company has an application that contains a number of Azure App Service web apps and Azure functions.
+You would like to view recommendations with regards to the security of the web apps and functions. 
+You plan to navigate to Compute and Apps to achieve your goal.
+
+Which of the following should you access to make use of Compute and Apps?
+
+A. Azure Log Analytics
+B. Azure Event Hubs
+C. Azure Advisor
+D. **Correct** Azure Security Center 
+
+- Notes: Azure Security Center and Azure Defender are now called Microsoft Defender for Cloud.
+
+### **Question 26**
+
+You need to consider the underlined segment to establish whether it is accurate.
+Your company has a multi-tier application that has its front end hosted in Azure App Service.
+To pinpoint the average load times of the application pages, you should make use of Azure Event Hubs.
+Select `No adjustment required` if the underlined segment is accurate. If the underlined segment is inaccurate, select the accurate option.
+
+A. No adjustment required.
+B. **Correct**  Azure Application Insights 
+C. Azure Log Analytics
+D. Azure Advisor
+
+### **Question 27, 28, 29**
+
+Your company makes use of Azure SQL Database Intelligent Insights and Azure Application Insights for monitoring purposes.
+You have been tasked with analyzing the monitoring using ad-hoc queries. You need to utilize the correct query language.
+Solution: You use the Contextual Query Language (CQL).
+Does the solution meet the goal?
+
+A. Yes
+B. **Correct** No
+
+
+### **Question 30**
+
+You have recently created a web application for your company.
+You have been tasked with making sure that a summary of the exceptions that transpire in the application 
+is automatically sent to Microsoft Teams on a daily basis.
+Which of the following Azure services should you use? Answer by dragging the correct options from the list to the answer area.
+ - Azure Logic Apps
+ - Application insights
+
+### **Question 31**
+
+You are in the process of building a mobile app aimed at Android and iOS devices.
+All work items and release cycles are managed via Azure DevOps.
+You want to make sure that crash reports for issue analysis is collected, and that beta releases are distributed to your testers. Also, you want to ensure that user feedback on the functionality of new apps is received.
+Which of the following must be part of your solution?
+
+A. **Correct** The Microsoft Test & Feedback extension.
+B. OWASP ZAP
+C. TFS Integration Platform
+D. Code Style
+
+   > **Note**:  
+   > Integration with Microsoft Visual Studio App Center is a comprehensive solution that 
+   > covers mobile app lifecycle management, including collecting bug reports, distributing beta versions, 
+   > and obtaining user feedback. It is a robust option for teams looking for a complete solution for mobile app development and >testing.  
+   > On the other hand, the Microsoft Test & Feedback extension is specifically designed to facilitate 
+   > the collection of feedback and manual testing in web and desktop applications, 
+   > but it can also be used for mobile applications. It allows collecting bug reports, distributing beta versions, 
+   > and obtaining user feedback. It is an option more focused on the manual testing phase and collaboration between 
+   > development teams and end users.

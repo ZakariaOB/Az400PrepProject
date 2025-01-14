@@ -32,7 +32,7 @@ https://www.youtube.com/watch?v=fDhAfh7zlDo
 
 Example:
 
-    A project with 100 total story points starts with 20 points completed, and the chart shows how the completed work increases over time while the total scope might increase or decrease due to changes.
+- A project with 100 total story points starts with 20 points completed, and the chart shows how the completed work increases over time while the total scope might increase or decrease due to changes.
 
 # Key Differences
 
