@@ -417,3 +417,282 @@ https://learn.microsoft.com/en-us/azure/azure-monitor/app/sampling#ingestion-sam
 Ingestion sampling doesn't operate while adaptive or fixed-rate sampling is in operation. Adaptive sampling 
 is enabled by default when the ASP.NET SDK or the ASP.NET Core SDK is being used, or when Application Insights 
 is enabled in Azure App Service or by using Application Insights Agent.
+
+
+# **Question 34**
+
+Your company has multiple microservices-based apps that use the following tracing libraries:
+
+• OpenTelemetry
+• OpenCensus
+• OpenTracing
+• Honeycomb
+• Jaeger
+
+The company purchases an Azure subscription and implements Application Insights in Azure Monitor.
+
+You plan to centralize distributed tracing for the apps.
+
+You need to identify which libraries can integrate directly with Application Insights.
+
+Which two libraries should you identify? Each correct answer presents a complete solution.
+
+D. OpenTelemetry
+E. OpenCensus
+
+Both OpenTelemetry and OpenCensus have built-in support for exporting telemetry data to various backends, including Application Insights. Therefore, they can seamlessly integrate with Application Insights, allowing you to centralize distributed tracing for your microservices-based apps.
+
+
+# **Question 35**
+
+You have an Azure web app named webapp1 that uses the .NET Core runtime stack. 
+You have an Azure Application Insights resource named AppInsights1. Webapp1 sends telemetry data to AppInsights1.
+
+You need to ensure that webapp1 sends the telemetry data at a fixed sampling rate.
+
+What should you do?
+
+A. From the code repository of webapp1, modify the ApplicationInsights.config file.
+B. From the code repository of webapp1, modify the Startup.cs file.
+C. From AppInsights1, modify the Usage and estimated costs settings.
+D. From AppInsights1, configure the Continuous export settings
+
+**Answer:** B. From the code repository of webapp1, modify the Startup.cs file.
+
+**Explanation:** In .NET Core, fixed sampling rate for Application Insights must be configured in `Startup.cs` using `SamplingTelemetryProcessor`. Other options are either outdated (`ApplicationInsights.config`), 
+irrelevant (`Usage and estimated costs`), or unrelated (`Continuous export`).
+
+**Code Sample:**
+```csharp
+public void ConfigureServices(IServiceCollection services)
+{
+    services.AddApplicationInsightsTelemetry();
+
+    services.Configure<TelemetryProcessorChainBuilder>((sp, builder) =>
+    {
+        builder.Use((next) => new SamplingTelemetryProcessor(next)
+        {
+            SamplingPercentage = 20 // Set a fixed sampling rate of 20%
+        });
+    });
+}
+```
+
+
+# **Question 36**
+
+You have an app named App1. You have a Log Analytics workspace named Workspace1 that contains two tables named Events and Logs. App1 manages events in multiple locations and writes logs to Workspace1.
+
+You need to query Workspace1 for all log entries related to Asia that occurred during the last two days.
+
+In which order should you arrange the query statements? To answer, move all statements from the list 
+of statements to the answer area and arrange them in the correct order.
+
+Logs
+| where Timestamp > ago(1d)
+| join
+(
+Events
+| where continent == 'Europe'
+) on RequestId
+
+# **Question 37**
+
+You have a web app named App1 that uses Application Insights in Azure Monitor.
+
+You need to compare the hourly CPU usage of App1 from the last 24 hours. 
+The solution must include a graph that has a threshold line at 75 percent.
+
+How should you complete the query? To answer, drag the appropriate values to the correct targets. 
+Each value may be used once, more than once, or not at all. 
+You may need to drag the split bar between panes or scroll to view content.
+
+  - from the last 24 hours:
+    TimeGenerated > ago(24h)
+
+    compare the hourly CPU usage:
+    bin(TimeGenerated, 1h)
+
+    must include a graph that has threshold line at 75 percent:
+    extend Threshold = 75
+
+  - bin(TimeGenerated, 1h): This function groups the data 
+    into one-hour intervals. Within each bin, the query aggregates the CPU usage data.
+
+
+  - extend Threshold = 75: This creates a new column called Threshold with a fixed value of 75. 
+    This value can be used as a horizontal reference line in your visualization.
+
+
+# **Question 38**
+
+You use Azure Pipelines to build and deploy an app named App1.
+
+You plan to monitor App1 by using Application Insights.
+
+You create an Application Insights instance named AI1.
+
+You need to configure App1 to use AI1.
+
+Which file should you modify?
+
+A. appsettings.json
+B. launchSettings.json
+C. startup.cs
+D. project.json
+
+# **Question 39**
+
+You have an Azure virtual machine named web1.
+
+You need to query the amount of free memory that was available on web1 during the past seven days. 
+The solution must meet the following requirements:
+
+• Display the data as a time chart.
+• Calculate the average value per hour.
+
+How should you complete the KQL query? To answer, select the appropriate options in the answer area.
+```
+let startTime = ago(7d);
+Perf
+| where TimeGenerated >= startTime
+| where Computer == "web1" and ObjectName == "Memory" and CounterName == "Available Bytes"
+| summarize avgFreeMemory = avg(CounterValue) by bin(TimeGenerated, 1h)
+| project TimeGenerated, avgFreeMemoryMB = avgFreeMemory / 1024 / 1024 // Convert bytes to megabytes
+| render timechart
+with (
+    title = 'Average Free Memory on web1 Over Last 7 Days',
+    ytitle = 'Free Memory (MB)',
+    xaxis = 'Time',
+    series = ['avgFreeMemoryMB']
+)
+```
+
+# **Question 40**
+
+You have a web app named App1 that uses Application Insights in Azure Monitor to store log data. 
+App1 has users in multiple locations.
+
+You need to query App1 requests from London and Paris that return a 404 error. The solution must meet the following requirements:
+• Return the timestamp url, resultCode, and duration fields
+• Only show requests made during the last hour.
+
+- This question is new. Answer are timestamp >= 1h and project. We need to project (show )
+
+
+# **Question 41**
+
+You have a project in Azure DevOps.
+
+You need to configure a dashboard. The solution must include the following metrics:
+
+• Bottlenecks in the software development process
+• A burndown chart for the work in a single iteration
+• How long it takes to close a work item after the item was started
+
+Which type of widget should you use for each metric? To answer, drag the appropriate 
+widget types to the correct metrics. Each widget type may be used once, more than once, or not at all. 
+You may need to drag the split bar between panes or scroll to view content.
+
+```
+Bottlenecks in the software development process: The Cumulative Flow Diagram (CFD) widget is suitable for identifying bottlenecks. It shows the count of work items for each column of a Kanban board over time, allowing you to spot patterns and potential bottlenecks in your team’s development cycle1.
+
+A burndown chart for the work in a single iteration: The Sprint Burndown widget is designed for this purpose. It displays a trend of remaining work across a single sprint or iteration, helping you track whether the team is on track to complete the work by the end of the iteration2.
+
+How long it takes to close a work item after the item was started: The Cycle Time widget measures the time taken to close a work item after work on it begins. This widget displays the cycle time of work items closed in a specified timeframe for a single team and backlog level
+```
+
+# **Question 42**
+
+You have an Azure subscription that contains a Log Analytics workspace named WS1 and a virtual machine named VM1.
+
+You need to install the Microsoft Enterprise Cloud Monitoring extension on VM1.
+
+Which two values are required to configure the extension? Each correct answer presents part of the solution.
+
+Correct answer is be:
+- the secret key of WS1
+- the ID of WS1
+https://learn.microsoft.com/en-us/azure/virtual-machines/extensions/oms-windows#extension-schema
+
+
+# **Question 43**
+
+You have an app named App1 that uses Application Insights to monitor application performance.
+
+You need to analyze how often a page in App1 is accessed.
+
+Which pane in Application Insights should you use?
+
+A. Events
+B. Sessions
+C. Impact
+D. Users
+
+Events should be the correct answer.
+https://learn.microsoft.com/en-us/azure/azure-monitor/app/usage-segmentation#the-users-sessions-and-events-segmentation-tool
+
+
+
+# **Question 44**
+
+You have a project in Azure DevOps that includes two users named User1 and User2.
+
+You plan to use Azure Monitor to manage logs.
+
+You need to ensure that the users can perform the actions shown in following the table.
+
+https://learn.microsoft.com/en-us/azure/azure-monitor/roles-permissions-security
+
+
+# **Question 45**
+
+How long it takes to close a work item (Cycle Time):
+
+```
+Widget Type: Query Tile or Chart for Cycle Time
+Details: Use the "Query Tile" widget to display the average cycle time for work items. You can create a query that calculates the time taken to close work items and visualize it using this widget.
+
+The number of completed backlog items (Burndown):
+
+Widget Type: Burndown Chart
+Details: Use the "Burndown" widget to visualize the number of completed backlog items over a sprint or iteration. This chart effectively shows the progress toward completion of work.
+
+How long it takes to restore failed services (Lead Time):
+
+Widget Type: Query Tile or Chart for Lead Time
+Details: Similar to cycle time, you can use a "Query Tile" or a custom chart to track the lead time for service restorations. This can be configured based on a query that measures the time from incident creation to resolution.
+```
+
+
+# **Question 46**
+
+You have an Azure App Service app named App1.
+You need to identify when App1 was offline. The solution must minimize administrative effort.
+Which troubleshooting category in App Service diagnostics should you use?
+
+A. Navigator
+B. Configuration and Management
+C. Diagnostic Tools
+D. **Correct** Availability and Performance
+
+https://learn.microsoft.com/en-us/azure/app-service/overview-diagnostics
+
+
+# **Question 47**
+
+You have an Azure subscription that contains an Azure Kubernetes Service (AKS) instance named AKS1.
+You collect and analyze metrics for AKS1 by using the Azure Monitor managed service for Prometheus.
+You need to analyze the performance of AKS1.
+
+Which query language should you use?
+
+A. PL/SQL
+B. **Correct** PromQL
+C. SparkQL
+D. KQL
+
+# **Question 48**
+
+- 5 columns are projected, and 1 is extended. So 6 columns.
+- Subtract 2 datetimes gives a timespan : https://learn.microsoft.com/en-us/kusto/query/datetime-timespan-arithmetic?view=microsoft-fabric. "One can subtract (but not add) two datetime values to get a timespan value expressing their difference.
